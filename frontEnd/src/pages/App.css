@@ -13,6 +13,12 @@ body {
   min-height: 100vh;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main {
   flex: 1;
 }
@@ -42,12 +48,13 @@ body {
   padding: 5px 20px;
 }
 
-.main-nav a {
+.main-nav span {
   font-weight: bold;
   color: #2c3e50;
+  cursor: pointer;
 }
 
-.main-nav a.router-link-exact-active {
+.main-nav span.router-link-exact-active {
   color: #42b983;
 }
 

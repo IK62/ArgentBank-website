@@ -1,11 +1,15 @@
-import React from 'react';
+import React from 'react'
 /* import { Counter } from './features/counter/Counter'; */
-import './App.css';
+import './App.css'
 import logo from '../assets/argentBankLogo.png'
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { store } from '../store/store'
+import { useDispatch } from 'react-redux'
 
 function App() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -19,13 +23,34 @@ function App() {
           <h1 className="sr-only">Argent Bank</h1>
         </div>
         <div>
-          <div className="main-nav-item" onClick={() => navigate('/signIn')}>
-            <i className="fa fa-user-circle"></i>
-            Sign In
-          </div>
+          {store.getState().isToken ? (
+            <>
+              <span className="main-nav-item" onClick={() => navigate('/user')}>
+                <i className="fa fa-user-circle"></i>
+                {" Tony "}
+              </span>
+              <span
+                className="main-nav-item"
+                onClick={() => {
+                  dispatch({ type: 'updateToken', payload: false })
+                  dispatch({type: 'deleteUser'})
+                  localStorage.removeItem('users')
+                  navigate('/')
+                }}
+              >
+                <i className="fa fa-sign-out"></i>
+                {" Sign Out "}
+              </span>
+            </>
+          ) : (
+            <span className="main-nav-item" onClick={() => navigate('/signIn')}>
+              <i className="fa fa-user-circle"></i>
+              {" Sign In "}
+            </span>
+          )}
         </div>
       </nav>
-      <main>
+      <main className={location.pathname !== '/' ? "main bg-dark" : ''}>
         <Outlet />
       </main>
       <footer className="footer">
@@ -35,4 +60,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

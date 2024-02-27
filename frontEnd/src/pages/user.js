@@ -1,13 +1,26 @@
+import { useNavigate } from 'react-router-dom'
+import { store } from '../store/store'
+import { useEffect } from 'react'
+
 function User() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!store.getState().isToken) {
+      navigate('/')
+    }
+  })
+
+  const { firstName, lastName } = store.getState().users
+
   return (
     <>
       <div className="header">
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {`${firstName} ${lastName}!`}
         </h1>
-        <button className="edit-button">Edit Name</button>
+        <button className="edit-button" onClick={() => console.log(window.prompt("Entrer votre nom", ""))}>Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
