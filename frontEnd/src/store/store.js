@@ -7,6 +7,6 @@ export const store = configureStore({
   reducer: {
     form: formReducer,
     users: userReducer,
-    isToken: tokenReducer,
+    token: tokenReducer,
   },
 })

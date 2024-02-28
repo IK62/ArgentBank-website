@@ -40,12 +40,13 @@ function SignIn() {
       )
       const profileData = await profileResponse.json()
       if (profileData.status === 200) {
-        dispatch({ type: 'updateToken', payload: true })
+        dispatch({ type: 'updateToken', payload: data.body.token })
         dispatch({ type: 'updateUser', payload: profileData.body })
         if (isChecked) {
           localStorage.setItem('users', JSON.stringify(profileData.body))
+          localStorage.setItem('token', data.body.token)
         }
-        if (store.getState().isToken && Object.keys(store.getState().users).length !== 0) {
+        if (store.getState().token && Object.keys(store.getState().users).length !== 0) {
           navigate('/user')
         }
       }

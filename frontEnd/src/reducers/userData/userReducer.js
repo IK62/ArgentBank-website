@@ -8,6 +8,8 @@ function userReducer(state = initialState, action) {
       return action.payload
     case 'deleteUser':
       return initialState
+    case 'updateUserName':
+      return {...state, userName: action.payload}
     default:
       return state
   }

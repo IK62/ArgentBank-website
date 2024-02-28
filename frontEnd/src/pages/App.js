@@ -23,11 +23,11 @@ function App() {
           <h1 className="sr-only">Argent Bank</h1>
         </div>
         <div>
-          {store.getState().isToken ? (
+          {store.getState().token ? (
             <>
               <span className="main-nav-item" onClick={() => navigate('/user')}>
                 <i className="fa fa-user-circle"></i>
-                {" Tony "}
+                {` ${store.getState().users.userName} `}
               </span>
               <span
                 className="main-nav-item"
@@ -35,6 +35,7 @@ function App() {
                   dispatch({ type: 'updateToken', payload: false })
                   dispatch({type: 'deleteUser'})
                   localStorage.removeItem('users')
+                  localStorage.removeItem('token')
                   navigate('/')
                 }}
               >
