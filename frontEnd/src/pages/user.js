@@ -15,7 +15,7 @@ function User() {
     }
   })
 
-  const { firstName, lastName } = store.getState().users
+  const { userName } = store.getState().users
 
 
   async function changeUserName(newUserName) {
@@ -29,7 +29,7 @@ function User() {
     })
     const data = await response.json()
     if (data.status === 200) {
-      localStorage.setItem('users', { ...JSON.parse(localStorage.getItem('users')), userName: newUserName})
+      localStorage.setItem('users', { ...localStorage.getItem('users'), userName: newUserName })
       dispatch({type: 'updateUserName', payload: newUserName})
       alert(data.message)
     }
@@ -41,7 +41,7 @@ function User() {
         <h1>
           Welcome back
           <br />
-          {`${firstName} ${lastName}!`}
+          {`${userName}!`}
         </h1>
         <button className="edit-button" onClick={() => {
           const newUserName = window.prompt("Entrer votre nom", "")

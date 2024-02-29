@@ -25,9 +25,9 @@ function App() {
         <div>
           {store.getState().token ? (
             <>
-              <span className="main-nav-item" onClick={() => navigate('/user')}>
+              <span className="main-nav-item" onClick={() => navigate('/profile')}>
                 <i className="fa fa-user-circle"></i>
-                {` ${store.getState().users.userName} `}
+                {` ${store.getState().users.firstName} `}
               </span>
               <span
                 className="main-nav-item"
@@ -44,7 +44,7 @@ function App() {
               </span>
             </>
           ) : (
-            <span className="main-nav-item" onClick={() => navigate('/signIn')}>
+            <span className="main-nav-item" onClick={() => navigate('/login')}>
               <i className="fa fa-user-circle"></i>
               {" Sign In "}
             </span>

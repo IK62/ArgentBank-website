@@ -43,11 +43,11 @@ function SignIn() {
         dispatch({ type: 'updateToken', payload: data.body.token })
         dispatch({ type: 'updateUser', payload: profileData.body })
         if (isChecked) {
-          localStorage.setItem('users', JSON.stringify(profileData.body))
+          localStorage.setItem('users', profileData.body)
           localStorage.setItem('token', data.body.token)
         }
         if (store.getState().token && Object.keys(store.getState().users).length !== 0) {
-          navigate('/user')
+          navigate('/profile')
         }
       }
     }
