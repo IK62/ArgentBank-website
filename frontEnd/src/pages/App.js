@@ -1,5 +1,4 @@
 import React from 'react'
-/* import { Counter } from './features/counter/Counter'; */
 import './App.css'
 import logo from '../assets/argentBankLogo.png'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'

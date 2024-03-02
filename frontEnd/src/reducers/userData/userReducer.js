@@ -1,4 +1,4 @@
-const users = localStorage.getItem( 'users' ) || false
+const users = JSON.parse(localStorage.getItem( 'users' )) || false
 
 const initialState = users ? users : {}
 

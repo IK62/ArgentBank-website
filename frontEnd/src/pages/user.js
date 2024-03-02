@@ -29,7 +29,7 @@ function User() {
     })
     const data = await response.json()
     if (data.status === 200) {
-      localStorage.setItem('users', { ...localStorage.getItem('users'), userName: newUserName })
+      localStorage.setItem('users', JSON.stringify({ ...JSON.parse(localStorage.getItem('users')), userName: newUserName }))
       dispatch({type: 'updateUserName', payload: newUserName})
       alert(data.message)
     }
@@ -45,7 +45,9 @@ function User() {
         </h1>
         <button className="edit-button" onClick={() => {
           const newUserName = window.prompt("Entrer votre nom", "")
-          changeUserName(newUserName)
+          if (newUserName) {
+            changeUserName(newUserName)
+          }
         } 
         }>Edit Name</button>
       </div>
