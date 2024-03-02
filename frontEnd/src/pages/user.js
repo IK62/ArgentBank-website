@@ -29,7 +29,9 @@ function User() {
     })
     const data = await response.json()
     if (data.status === 200) {
-      localStorage.setItem('users', JSON.stringify({ ...JSON.parse(localStorage.getItem('users')), userName: newUserName }))
+      if (localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify({ ...JSON.parse(localStorage.getItem('users')), userName: newUserName }))
+      }
       dispatch({type: 'updateUserName', payload: newUserName})
       alert(data.message)
     }
